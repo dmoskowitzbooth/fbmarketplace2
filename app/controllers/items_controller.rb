@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def index
     if current_user.latitude.present? && current_user.longitude.present?
-      matching_items = Item.near([current_user.latitude, current_user.longitude], 50) # within 50 miles/km
+      matching_items = Item.near([current_user.latitude, current_user.longitude], 50)
     else
       matching_items = Item.all
     end
@@ -79,5 +79,8 @@ class ItemsController < ApplicationController
     the_item.destroy
 
     redirect_to("/items", { :notice => "Item deleted successfully."} )
+  end
+  def new
+  @item = current_user.selling_items.build
   end
 end

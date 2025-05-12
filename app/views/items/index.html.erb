@@ -276,3 +276,17 @@
 </div>
 
 <hr>
+
+<h1>Items for Sale Near You</h1>
+
+<%= link_to "➕ List an Item for Sale", new_item_path, class: "btn btn-primary" %>
+
+<% @list_of_items.each do |item| %>
+  <div class="item">
+    <h3><%= item.name %></h3>
+    <p><%= item.description %></p>
+    <p><strong>$<%= item.asking_price %></strong></p>
+    <p><%= item.address %></p>
+    <%= link_to "View Item", item_path(item) %>
+  </div>
+<% end %>

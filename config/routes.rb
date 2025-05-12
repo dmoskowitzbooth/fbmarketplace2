@@ -120,5 +120,6 @@ Rails.application.routes.draw do
   # get "/your_first_screen" => "pages#first"
 
   post '/location', to: 'locations#create'
+  resources :items
   
 end
