@@ -12,4 +12,8 @@
 #  sender_id      :integer
 #
 class MsgChain < ApplicationRecord
+  belongs_to :sender, class_name: "User", counter_cache: true
+  belongs_to :receiver, class_name: "User", counter_cache: :msg_chains_rcvd_count
+  belongs_to :item, counter_cache: true
+  has_many  :messages, foreign_key: "chain_id", dependent: :destroy
 end

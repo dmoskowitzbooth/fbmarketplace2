@@ -12,4 +12,7 @@
 #  sender_id   :integer
 #
 class Message < ApplicationRecord
+  belongs_to :sender, class_name: "User", counter_cache: true
+  belongs_to :receiver, class_name: "User", counter_cache: :messages_rcvd_count
+  belongs_to :chain, class_name: "MsgChain", counter_cache: true
 end

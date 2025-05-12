@@ -15,4 +15,8 @@
 #  seller_id         :integer
 #
 class Sale < ApplicationRecord
+  belongs_to :seller, class_name: "User", counter_cache: true
+  belongs_to :buyer, class_name: "User", counter_cache: :sales_buyer_count
+  belongs_to :item
+  belongs_to :accepted_offer, class_name: "Offer"
 end

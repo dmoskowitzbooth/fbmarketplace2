@@ -37,4 +37,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many  :items, foreign_key: "seller_id", dependent: :destroy
+  has_many  :messages, foreign_key: "sender_id", dependent: :destroy
+  has_many  :msg_chains, foreign_key: "sender_id", dependent: :nullify
+  has_many  :offers, foreign_key: "submitter_id", dependent: :nullify
+  has_many  :reviews, foreign_key: "author_id", dependent: :nullify
+  has_many  :reviews_about, class_name: "Review", foreign_key: "user_about_id", dependent: :destroy
+  has_many  :sales, foreign_key: "seller_id"
+  has_many  :sales_buyer, class_name: "Sale", foreign_key: "buyer_id"
+  has_many  :messages_rcvd, class_name: "Message", foreign_key: "receiver_id"
+  has_many  :msg_chains_rcvd, class_name: "MsgChain", foreign_key: "receiver_id"
 end

@@ -12,4 +12,7 @@
 #  submitter_id :integer
 #
 class Offer < ApplicationRecord
+  belongs_to :submitter, class_name: "User", counter_cache: true
+  belongs_to :item, counter_cache: true
+  has_many  :sales, foreign_key: "accepted_offer_id"
 end

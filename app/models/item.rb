@@ -20,4 +20,9 @@
 #  seller_id         :integer
 #
 class Item < ApplicationRecord
+  belongs_to :seller, class_name: "User", counter_cache: true
+  has_many  :offers, dependent: :destroy
+  has_many  :msg_chains, dependent: :nullify
+  has_many  :sales
+  has_many  :reviews
 end
