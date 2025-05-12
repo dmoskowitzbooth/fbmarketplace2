@@ -1,11 +1,16 @@
 class ItemsController < ApplicationController
   def index
-    matching_items = Item.all
+    if current_user.latitude.present? && current_user.longitude.present?
+      matching_items = Item.near([current_user.latitude, current_user.longitude], 50) # within 50 miles/km
+    else
+      matching_items = Item.all
+    end
 
-    @list_of_items = matching_items.order({ :created_at => :desc })
+    @list_of_items = matching_items.order(created_at: :desc)
 
-    render({ :template => "items/index" })
+    render template: "items/index"
   end
+
 
   def show
     the_id = params.fetch("path_id")

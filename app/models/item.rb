@@ -8,6 +8,8 @@
 #  category          :string
 #  description       :text
 #  image             :string
+#  latitude          :float
+#  longitude         :float
 #  msg_chains_count  :integer
 #  name              :string
 #  offers_count      :integer
@@ -25,4 +27,6 @@ class Item < ApplicationRecord
   has_many  :msg_chains, dependent: :nullify
   has_many  :sales
   has_many  :reviews
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end

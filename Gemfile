@@ -86,6 +86,8 @@ gem "table_print"
 gem "simple_form"
 gem "carrierwave"
 gem "openai-chat"
+gem 'geocoder'
+
 
 group :development do
   gem "annotate"
